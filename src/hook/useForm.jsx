@@ -9,6 +9,7 @@ export const useForm = (valorInicial) => {
       ...prev,
       [name]: value,
     }));
+    console.log(name, value);
   };
   const handleReset = () => {
     setForm(valorInicial);

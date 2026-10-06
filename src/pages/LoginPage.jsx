@@ -1,15 +1,10 @@
 import { useState } from "react";
-
+import { useForm } from "../hook/useForm";
 export const LoginPage = () => {
-  const [form, setForm] = useState({
-    name: "",
-    email: "",
-    surname: "",
-    password: "",
-  });
+  const { form, handleInputChange } = useForm({ email: "", password: "" });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
-
+  console.log(form);
   return (
     <>
       <div className="border-2 border-slate-300 rounded-xl p-4 shadow-sm">
@@ -17,16 +12,20 @@ export const LoginPage = () => {
 
         <form className="flex flex-col gap-1.5 mt-2">
           <input
-            type="text"
+            type="email"
             className="border"
             placeholder="email"
             name="email"
+            onChange={handleInputChange}
+            value={form.email}
           />
           <input
             type="password"
             className="border"
             placeholder="Password"
             name="password"
+            onChange={handleInputChange}
+            value={form.password}
           />
           <button
             type="submit"
