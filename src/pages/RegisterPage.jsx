@@ -1,39 +1,72 @@
 import { useState } from "react";
+import { useForm } from "../hook/useForm";
 
 export const RegisterPage = () => {
+  const { form, handleInputChange } = useForm({
+    username: "",
+    email: "",
+    telephone: "",
+    password: "",
+  });
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+  };
   return (
     <>
       <div className="border-2 border-slate-300 rounded-xl p-4 shadow-sm">
         <h1 className="text-3xl font-bold text-blue-600">Register</h1>
 
-        <form className="flex flex-col gap-1.5 mt-2">
+        <form className="flex flex-col gap-1.5 mt-2" onSubmit={handleSubmit}>
           <input
             type="text"
             className="border"
-            placeholder="name"
-            name="name"
+            placeholder="username"
+            name="username"
+            onChange={handleInputChange}
+            value={form.username}
           />
           <input
-            type="text"
-            className="border"
-            placeholder="surname"
-            name="surname"
-          />
-          <input
-            type="text"
+            type="email"
             className="border"
             name="email"
             placeholder="Email"
+            onChange={handleInputChange}
+            value={form.email}
           />
 
-          <input type="text" className="border" placeholder="telephone" />
+          <input
+            type="tel"
+            className="border"
+            name="telephone"
+            placeholder="telephone"
+            onChange={handleInputChange}
+            value={form.telephone}
+          />
+          <input
+            type="password"
+            name="password"
+            className="border"
+            placeholder="password"
+            onChange={handleInputChange}
+            value={form.password}
+          />
+
           <button
             type="submit"
-            className="bg-red-400 rounded-2xl p-1 "
-            style={{ cursor: "pointer" }}
+            className="cursor-pointer bg-red-500 rounded-2xl p-1 hover:bg-sky-700   "
           >
             Registrarse
           </button>
+
+          <p>
+            ¿Ya estas registrado?<a href="">Inicia Sesión</a>
+          </p>
         </form>
       </div>
     </>

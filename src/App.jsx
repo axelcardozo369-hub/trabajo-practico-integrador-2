@@ -4,9 +4,9 @@ import { RegisterPage } from "./pages/RegisterPage";
 export const App = () => {
   return (
     <>
-      <LoginPage />
+      {/* <LoginPage /> */}
 
-      {/* <Register /> */}
+      <RegisterPage />
     </>
   );
 };
