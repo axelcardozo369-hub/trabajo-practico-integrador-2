@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { API_URL } from "../config/api";
 import { useForm } from "../hooks/useForm";
+import { useNavigate } from "react-router";
 export const LoginPage = () => {
   const { form, handleInputChange } = useForm({ email: "", password: "" });
 
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError(null);
@@ -19,12 +21,19 @@ export const LoginPage = () => {
       });
       const resultado = await respuesta.json();
       console.log(respuesta.status, resultado);
+      if (respuesta.ok) {
+        localStorage.setItem("isLogged", "true");
+        navigate("/");
+      } else {
+        setError(resultado.message);
+      }
     } catch (error) {
       setError(error.message);
     } finally {
       setIsLoading(false);
     }
   };
+
   return (
     <>
       <div className="border-2 border-slate-300 rounded-xl p-4 shadow-sm">
