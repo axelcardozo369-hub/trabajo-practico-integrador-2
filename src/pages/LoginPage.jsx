@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { API_URL } from "../config/api";
 import { useForm } from "../hooks/useForm";
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 export const LoginPage = () => {
   const { form, handleInputChange } = useForm({ email: "", password: "" });
 
@@ -43,6 +43,7 @@ export const LoginPage = () => {
           <input
             type="email"
             className="border"
+            autoComplete="email"
             placeholder="email"
             name="email"
             onChange={handleInputChange}
@@ -55,7 +56,14 @@ export const LoginPage = () => {
             name="password"
             onChange={handleInputChange}
             value={form.password}
+            autoComplete="current-password"
           />
+          <p>
+            ¿No tenés cuenta?{" "}
+            <Link to="/register" className="text-sky-600 underline">
+              Registrate acá
+            </Link>
+          </p>
           {isLoading && <p>Cargando...</p>}
           {error && <p className="text-red-600">{error}</p>}
           <button
