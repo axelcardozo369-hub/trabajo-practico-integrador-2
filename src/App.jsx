@@ -6,8 +6,8 @@ export const App = () => {
   return (
     <>
       {/* <LoginPage /> */}
-      {/* <HomePage /> */}
-      <Navbar />
+      <HomePage />
+      {/* <Navbar /> */}
       {/* <RegisterPage /> */}
     </>
   );

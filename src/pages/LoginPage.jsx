@@ -1,9 +1,6 @@
-import { useState } from "react";
-import { useForm } from "../hook/useForm";
+import { useForm } from "../hooks/useForm";
 export const LoginPage = () => {
   const { form, handleInputChange } = useForm({ email: "", password: "" });
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();

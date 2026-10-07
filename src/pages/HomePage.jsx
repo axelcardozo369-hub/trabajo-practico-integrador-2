@@ -1,5 +1,5 @@
 import { API_URL } from "../config/api";
-import { useFetch } from "../hook/useFetch";
+import { useFetch } from "../hooks/useFetch";
 
 export const HomePage = () => {
   const { data, isLoading, error } = useFetch(`${API_URL}/articles`);
