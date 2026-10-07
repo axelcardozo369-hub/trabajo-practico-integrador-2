@@ -1,9 +1,29 @@
+import { useState } from "react";
+import { API_URL } from "../config/api";
 import { useForm } from "../hooks/useForm";
 export const LoginPage = () => {
   const { form, handleInputChange } = useForm({ email: "", password: "" });
 
-  const handleSubmit = (e) => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setError(null);
+    setIsLoading(true);
+    try {
+      const respuesta = await fetch(`${API_URL}/auth/login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify(form),
+      });
+      const resultado = await respuesta.json();
+      console.log(respuesta.status, resultado);
+    } catch (error) {
+      setError(error.message);
+    } finally {
+      setIsLoading(false);
+    }
   };
   return (
     <>
@@ -27,8 +47,11 @@ export const LoginPage = () => {
             onChange={handleInputChange}
             value={form.password}
           />
+          {isLoading && <p>Cargando...</p>}
+          {error && <p className="text-red-600">{error}</p>}
           <button
             type="submit"
+            disabled={isLoading}
             className="cursor-pointer bg-sky-500 rounded-2xl p-1 hover:bg-sky-700 "
           >
             Iniciar Sesion
