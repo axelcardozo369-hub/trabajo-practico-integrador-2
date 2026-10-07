@@ -4,10 +4,9 @@ export const LoginPage = () => {
   const { form, handleInputChange } = useForm({ email: "", password: "" });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
-  console.log(form);
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(form);
   };
   return (
     <>
