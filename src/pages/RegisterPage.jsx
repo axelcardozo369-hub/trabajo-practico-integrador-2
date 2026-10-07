@@ -5,7 +5,6 @@ export const RegisterPage = () => {
   const { form, handleInputChange } = useForm({
     username: "",
     email: "",
-    telephone: "",
     password: "",
   });
   const [loading, setLoading] = useState(false);
@@ -40,14 +39,6 @@ export const RegisterPage = () => {
             value={form.email}
           />
 
-          <input
-            type="tel"
-            className="border"
-            name="telephone"
-            placeholder="telephone"
-            onChange={handleInputChange}
-            value={form.telephone}
-          />
           <input
             type="password"
             name="password"
